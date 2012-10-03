@@ -23,6 +23,7 @@ Circles::Circles(QWidget *parent, Qt::WFlags flags)
 	GDrawing->setZValue(100);
 	Circle * c = new Circle(0, GScene);
 	c->setRange(smallRange);
+	c->setCross(QPointF(5,5),QColor(0,0,0));
 	_mainCircle->attach(c);
 	QPoint point(10,10);
 	ui._view->setRenderHints( QPainter::Antialiasing );
