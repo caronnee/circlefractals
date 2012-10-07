@@ -16,6 +16,7 @@ public:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /* = 0 */);
 	~Drawing();
 	void addPoint( const QPointF & newPos );
+	void clear();
 private:
 	
 };
