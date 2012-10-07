@@ -4,7 +4,7 @@
 #include "drawing.h"
 
 const int bigRange = 100;
-const int smallRange = 30;
+const int smallRange = 70;
 
 QGraphicsScene * GScene = NULL;
 Drawing * GDrawing = NULL;
@@ -17,20 +17,27 @@ Circles::Circles(QWidget *parent, Qt::WFlags flags)
 	ui._view->setScene(GScene);
 	QSize s = ui._view->size();
 	GScene->setSceneRect( -100.0, -100.0, 200.0, 200.0 );
-	_mainCircle = new Circle( 0, GScene );
+	_mainCircle = createCircle();
 	_mainCircle->setRange(bigRange);
 	GDrawing = new Drawing(_mainCircle);
 	GDrawing->setZValue(100);
-	Circle * c = new Circle(0, GScene);
+	Circle * c = createCircle();
 	c->setRange(smallRange);
-	c->setCross(QPointF(5,5),QColor(0,0,0));
+	c->setCross(QPointF(DEBUG_RANGE,0),QColor(0,0,0));
 	_mainCircle->attach(c);
-	QPoint point(10,10);
 	ui._view->setRenderHints( QPainter::Antialiasing );
 	_timer.setInterval(100/3);
 
 	QObject::connect(&_timer, SIGNAL(timeout()), GScene, SLOT(advance()));
 	QObject::connect(ui.startButton, SIGNAL(clicked()), this, SLOT(changeTimer()));
+	QObject::connect(ui.restartButton, SIGNAL(clicked()), this, SLOT(restart()));
+}
+
+Circle * Circles::createCircle()
+{
+	Circle * ret = new Circle(0, GScene);
+	QObject::connect(ui.restartButton, SIGNAL(clicked()), ret, SLOT(restart()));
+	return ret;
 }
 
 Circles::~Circles()
@@ -48,4 +55,9 @@ void Circles::changeTimer()
 	}
 	_timer.stop();
 	ui.startButton->setText("Start");
+}
+
+void Circles::restart()
+{
+	GDrawing->clear();
 }

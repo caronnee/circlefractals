@@ -1,11 +1,17 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
+#include <QObject>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsPathItem>
 
-class Circle : public QGraphicsEllipseItem
+#define DEBUG_RANGE 30
+
+class Circle : public QObject, public QGraphicsEllipseItem
 {
+	Q_OBJECT
+
+	typedef QGraphicsEllipseItem base;
 public:
 	Circle(QGraphicsEllipseItem *parent, QGraphicsScene * scene);
 	~Circle();
@@ -20,7 +26,6 @@ private:
 	float _scale;
 	QPointF _point;
 	QColor _color;
-	bool _cross;
 	public slots:
 	void attach( Circle * at );
 	virtual void advance(int phase);
@@ -31,6 +36,9 @@ public:
 	int getRange();
 	void setRange( int range );
 	void setCross(QPointF point, QColor color);
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /* = 0 */);
+public slots:
+	void restart();
 };
 
 #endif // CIRCLE_H

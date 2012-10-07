@@ -24,6 +24,8 @@ private:
 	Ui::CirclesClass ui;
 public slots:
 	void changeTimer();
+	void restart();
+	Circle * createCircle();
 };
 
 #endif // CIRCLES_H

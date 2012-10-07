@@ -44,6 +44,11 @@ void Drawing::addPoint(const QPointF & newPos )
 	_points.append(newPos);
 }
 
+void Drawing::clear()
+{
+	_points.clear();
+}
+
 //void Cross::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /* = 0 */ )
 //{
 //	painter->drawLine(-2,-2,2,2);

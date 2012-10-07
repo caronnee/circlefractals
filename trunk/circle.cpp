@@ -5,10 +5,9 @@
 extern Drawing * GDrawing;
 
 #define PI 3.14f
-#define STEP 1
 
 Circle::Circle(QGraphicsEllipseItem *parent, QGraphicsScene * scene)
-	: QGraphicsEllipseItem(parent,scene),_alpha(0),_parent(NULL),_alphaStep(5 * PI/360),_rDiff(0),_attached(NULL),_pixmap(NULL),_scale(0),_cross(true)
+	: QGraphicsEllipseItem(parent,scene),_alpha(0),_parent(NULL),_alphaStep(5 * PI/360),_rDiff(0),_attached(NULL),_pixmap(NULL),_scale(0)
 {
 	setPos(  0 , 0 );
 }
@@ -24,7 +23,7 @@ Circle::~Circle()
 		delete (_attached);
 }
 
-#define ToDegree(x) x*180/PI
+float ToDegree(float x) { return x*180/PI; }
 
 void Circle::advance( int phase )
 {
@@ -38,6 +37,13 @@ void Circle::advance( int phase )
 	GDrawing->addPoint(mapToItem(GDrawing,_point));
 }
 
+void Circle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /* = 0 */)
+{
+	base::paint(painter,option,widget);
+	if (!_parent)
+		return;
+	painter->drawLine(0,0,getRange(),0);
+}
 void Circle::attach( Circle * at )
 {
 	_attached = at;
@@ -57,7 +63,6 @@ int Circle::getRange()
 
 void Circle::setCross(QPointF point, QColor color)
 {
-	_cross = true;
 	_point = point;
 	_color = color;
 }
@@ -70,6 +75,10 @@ void Circle::setParent( Circle* parent )
 	_parent = parent;
 	_rDiff = parent->getRange() - getRange();
 	_scale = getRange()/(float)parent->getRange();
+#if _DEBUG
+	Circle *c = new Circle(this,scene());
+	c->setRange(DEBUG_RANGE);
+#endif
 	advance(1);	
 }
 
@@ -78,4 +87,10 @@ void Circle::setRange( int range )
 	setRect(-range,-range,range * 2, range *2);
 	if (_parent)
 		_rDiff = _parent->getRange() - getRange();
+}
+
+void Circle::restart()
+{
+	_alpha = 0;
+	advance(1);
 }
