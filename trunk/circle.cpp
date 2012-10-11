@@ -3,6 +3,7 @@
 #include "drawing.h"
 
 extern Drawing * GDrawing;
+extern int GFrameStep;
 
 #define PI 3.14f
 
@@ -29,20 +30,25 @@ void Circle::advance( int phase )
 {
 	if ( (!_parent) || (!phase) )
 		return;
-	// calculate position of tracked symbol
-	// move yourself as a according to parent
-	setPos( _rDiff * cos(_alpha*_scale), _rDiff * sin(_alpha*_scale) );
-	setRotation(ToDegree(_alpha));
-	_alpha += _alphaStep;
-	GDrawing->addPoint(mapToItem(GDrawing,_point));
+	for ( int i = 0; i < GFrameStep; i++)
+	{
+		// calculate position of tracked symbol
+		// move yourself as a according to parent
+		setPos( _rDiff * cos(_alpha*_scale), _rDiff * sin(_alpha*_scale) );
+		setRotation(ToDegree(_alpha));
+		_alpha += _alphaStep;
+		GDrawing->addPoint(mapToItem(GDrawing,_point));
+	}
 }
 
 void Circle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /* = 0 */)
 {
 	base::paint(painter,option,widget);
+#if 0
 	if (!_parent)
 		return;
 	painter->drawLine(0,0,getRange(),0);
+#endif
 }
 void Circle::attach( Circle * at )
 {
@@ -75,7 +81,7 @@ void Circle::setParent( Circle* parent )
 	_parent = parent;
 	_rDiff = parent->getRange() - getRange();
 	_scale = getRange()/(float)parent->getRange();
-#if _DEBUG
+#if 0 //_DEBUG
 	Circle *c = new Circle(this,scene());
 	c->setRange(DEBUG_RANGE);
 #endif
