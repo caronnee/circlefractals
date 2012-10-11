@@ -8,6 +8,7 @@ const int smallRange = 70;
 
 QGraphicsScene * GScene = NULL;
 Drawing * GDrawing = NULL;
+int GFrameStep = 1;// number of points per frame
 
 Circles::Circles(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags)
@@ -31,6 +32,7 @@ Circles::Circles(QWidget *parent, Qt::WFlags flags)
 	QObject::connect(&_timer, SIGNAL(timeout()), GScene, SLOT(advance()));
 	QObject::connect(ui.startButton, SIGNAL(clicked()), this, SLOT(changeTimer()));
 	QObject::connect(ui.restartButton, SIGNAL(clicked()), this, SLOT(restart()));
+	QObject::connect(ui.frameStep, SIGNAL(valueChanged(int)), this, SLOT(setFrameStep(int)));
 }
 
 Circle * Circles::createCircle()
@@ -60,4 +62,9 @@ void Circles::changeTimer()
 void Circles::restart()
 {
 	GDrawing->clear();
+}
+
+void Circles::setFrameStep( int frameStep )
+{
+	GFrameStep = frameStep;
 }

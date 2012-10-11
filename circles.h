@@ -26,6 +26,7 @@ public slots:
 	void changeTimer();
 	void restart();
 	Circle * createCircle();
+	void setFrameStep(int frameStep);
 };
 
 #endif // CIRCLES_H

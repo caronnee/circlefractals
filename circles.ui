@@ -18,14 +18,14 @@
     <item row="5" column="0" rowspan="5" colspan="6">
      <widget class="QGraphicsView" name="_view"/>
     </item>
-    <item row="9" column="6">
+    <item row="9" column="7">
      <widget class="QPushButton" name="quitButton">
       <property name="text">
        <string>Quit</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="6">
+    <item row="7" column="7">
      <widget class="QPushButton" name="startButton">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -96,10 +96,27 @@
       </attribute>
      </widget>
     </item>
-    <item row="8" column="6">
+    <item row="8" column="7">
      <widget class="QPushButton" name="restartButton">
       <property name="text">
        <string>Restart</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="7">
+     <widget class="QSpinBox" name="frameStep">
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="6">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>FrameStep</string>
       </property>
      </widget>
     </item>
