@@ -37,11 +37,17 @@ QRectF Drawing::boundingRect( void ) const
 
 #define MAXPOINTS 10000
 
-void Drawing::addPoint(const QPointF & newPos )
+float gm = 100;
+bool Drawing::addPoint( const QPointF & newPos )
 {
 	if (_lastPoint > MAXPOINTS)
-		return;
+		return true;
 	_points.append(newPos);
+	QPointF diff= newPos - _points[0];
+	float len = diff.manhattanLength();
+	if ( len < 1 )
+		return _points.size() > 1;
+	return false;
 }
 
 void Drawing::clear()

@@ -26,6 +26,7 @@ private:
 	float _scale;
 	QPointF _point;
 	QColor _color;
+	bool _end;
 	public slots:
 	void attach( Circle * at );
 	virtual void advance(int phase);
