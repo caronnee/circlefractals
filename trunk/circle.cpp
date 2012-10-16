@@ -8,7 +8,7 @@ extern int GFrameStep;
 #define PI 3.14f
 
 Circle::Circle(QGraphicsEllipseItem *parent, QGraphicsScene * scene)
-	: QGraphicsEllipseItem(parent,scene),_alpha(0),_parent(NULL),_alphaStep(5 * PI/360),_rDiff(0),_attached(NULL),_pixmap(NULL),_scale(0)
+	: QGraphicsEllipseItem(parent,scene),_alpha(0),_parent(NULL),_alphaStep(5 * PI/360),_rDiff(0),_attached(NULL),_pixmap(NULL),_scale(0),_end(false)
 {
 	setPos(  0 , 0 );
 }
@@ -30,14 +30,14 @@ void Circle::advance( int phase )
 {
 	if ( (!_parent) || (!phase) )
 		return;
-	for ( int i = 0; i < GFrameStep; i++)
+	for ( int i = 0; (i < GFrameStep)&& !_end; i++)
 	{
 		// calculate position of tracked symbol
 		// move yourself as a according to parent
 		setPos( _rDiff * cos(_alpha*_scale), _rDiff * sin(_alpha*_scale) );
 		setRotation(ToDegree(_alpha));
 		_alpha += _alphaStep;
-		GDrawing->addPoint(mapToItem(GDrawing,_point));
+		_end = GDrawing->addPoint(mapToItem(GDrawing,_point));
 	}
 }
 
