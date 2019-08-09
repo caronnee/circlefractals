@@ -1,20 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Circles", "Circles.vcproj", "{CFB9AEAC-F652-427B-A792-7DC41175EE91}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Circles", "Circles.vcxproj", "{CFB9AEAC-F652-427B-A792-7DC41175EE91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Debug|Win32.Build.0 = Debug|Win32
-		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Release|Win32.ActiveCfg = Release|Win32
-		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Release|Win32.Build.0 = Release|Win32
+		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Debug|x64.ActiveCfg = Debug|x64
+		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Debug|x64.Build.0 = Debug|x64
+		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Release|x64.ActiveCfg = Release|x64
+		{CFB9AEAC-F652-427B-A792-7DC41175EE91}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB8FB37E-017A-49FC-B0EF-BE4DE8245FDC}
 	EndGlobalSection
 EndGlobal
