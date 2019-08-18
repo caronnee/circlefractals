@@ -16,7 +16,11 @@ Circles::Circles(QWidget *parent)
 
 	QSize s = ui.q_view->size();
 	GScene->setSceneRect( -100.0, -100.0, 200.0, 200.0 );
-  GScene->addEllipse(0, 0, 30, 30);
+  QGraphicsItem * it = GScene->addEllipse(0, 0, 100, 100);
+  _items.push_back(it);
+  GScene->addEllipse(0, 15, 70, 70);
+  _items.push_back(it);
+  it->setPos(-10, 10);
 	ui.q_view->setRenderHints( QPainter::Antialiasing );
 	_timer.setInterval(100/3);
   

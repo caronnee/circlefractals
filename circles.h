@@ -13,6 +13,7 @@ class Circles : public QMainWindow
 	Q_OBJECT
 
 	QTimer _timer;
+  std::vector<QGraphicsItem *> _items;
 	// pixmap on scene
 public:
 	Circles(QWidget *parent = 0);
